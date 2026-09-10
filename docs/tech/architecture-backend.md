@@ -44,13 +44,15 @@
 - expose DDD-style methods such as `find_by_id`, `find_by_name`, `save`, `delete`
 
 ## For Routers (FastAPI equivalent of Controllers)
-- use URL such as /api/v1/ENTITY (eg: /api/v1/pets)
+- for a **new** resource, use URL such as /api/v1/ENTITY (eg: /api/v1/pets)
+- **never rename an existing route path when refactoring.** `brownfield-backend` already exposes `/api/v1/pet`, `/api/v1/vet` and `/api/v1/visit` (singular) alongside `/api/v1/invoices` (plural). The frontend hardcodes those exact paths, so "correcting" them silently breaks the application
+- do not change the JSON field casing of an existing response. `brownfield-backend` returns camelCase (eg `ownerName`, `dateTime`) and its frontend depends on it; `greenfield-backend` returns snake_case. Keep whichever the project already uses
 - return Pydantic response models directly from route functions instead of wrapping them in an explicit `Response`/`JSONResponse`, unless really needed
 - raise `HTTPException` for error responses
 
 ## pytest tests - what to test
 - We should have good coverage of tests at the service layer. If business rules are simple, do an Integration test (all the way down to the in-memory SQLite database)
-- All complex business rules should be tested with a pure Unit Test (using `unittest.mock` / `pytest-mock`)
+- All complex business rules should be tested with a pure Unit Test (using `unittest.mock` from the standard library)
 - Only test Repository and Router (controller) layers if there is something interesting to test
 
 ## pytest tests - Implementation

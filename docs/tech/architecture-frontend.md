@@ -8,6 +8,9 @@
 - use async/await syntax for cleaner asynchronous code
 - implement proper error boundaries for error handling
 
+## TypeScript
+- both frontends set `verbatimModuleSyntax: true`, so **type-only imports must be marked**: write `import { type Pet, findAll } from './petService'` or `import type { Pet } from './petService'`. An unmarked type import fails to compile
+
 ## Component Structure
 - keep components small and focused on a single responsibility
 - use TypeScript interfaces for props and state
