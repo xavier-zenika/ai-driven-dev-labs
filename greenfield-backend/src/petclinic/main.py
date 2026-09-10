@@ -3,16 +3,12 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from petclinic.database import Base, SessionLocal, engine
-from petclinic.pet.router import router as pet_router
-from petclinic.seed import seed
+from petclinic.database import Base, engine
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
-    with SessionLocal() as db:
-        seed(db)
     yield
 
 
@@ -25,5 +21,3 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
-
-app.include_router(pet_router)
