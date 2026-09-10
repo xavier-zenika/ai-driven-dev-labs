@@ -1,15 +1,13 @@
 services:
   brownfield-backend:
-    image: maven:3.9-eclipse-temurin-21
+    image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
     working_dir: /app
     volumes:
       - ./brownfield-backend:/app:z
-      - maven-cache:/root/.m2:z
-    command: mvn spring-boot:run
+      - uv-cache:/root/.cache/uv:z
+    command: uv run uvicorn petclinic.main:app --reload --host 0.0.0.0 --port 8000
     ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - "8000:8000"
 
   brownfield-frontend:
     image: node:22
@@ -24,7 +22,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
 
 volumes:
-  maven-cache:
+  uv-cache:
 
 networks:
   default:
