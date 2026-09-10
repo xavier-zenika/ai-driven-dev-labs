@@ -25,7 +25,7 @@ describe('petService', () => {
 
       const result = await petService.findAll();
 
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8080/api/v1/pet');
+      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8000/api/v1/pet');
       expect(result).toEqual(mockPets);
     });
 
@@ -49,7 +49,7 @@ describe('petService', () => {
 
       const result = await petService.findById(1);
 
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8080/api/v1/pet/1');
+      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8000/api/v1/pet/1');
       expect(result).toEqual(mockPet);
     });
 
@@ -73,7 +73,7 @@ describe('petService', () => {
 
       const result = await petService.findByName('Max');
 
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8080/api/v1/pet/name/Max');
+      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8000/api/v1/pet/name/Max');
       expect(result).toEqual(mockPet);
     });
 
@@ -98,7 +98,7 @@ describe('petService', () => {
 
       const result = await petService.save(newPet);
 
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8080/api/v1/pet', {
+      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8000/api/v1/pet', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ describe('petService', () => {
 
       await petService.delete(1);
 
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8080/api/v1/pet/1', {
+      expect(global.fetch).toHaveBeenCalledWith('http://localhost:8000/api/v1/pet/1', {
         method: 'DELETE',
       });
     });
