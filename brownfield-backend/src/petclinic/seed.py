@@ -9,11 +9,11 @@ from petclinic.vet.models import Vet
 from petclinic.visit.models import Visit
 
 PETS = [
-    (0, "Max", "John Smith"),
-    (1, "Bella", "Sarah Johnson"),
-    (2, "Charlie", "John Smith"),
-    (3, "Luna", "Emily Davis"),
-    (4, "Rocky", "Michael Brown"),
+    (1, "Max", "John Smith"),
+    (2, "Bella", "Sarah Johnson"),
+    (3, "Charlie", "John Smith"),
+    (4, "Luna", "Emily Davis"),
+    (5, "Rocky", "Michael Brown"),
 ]
 
 VETS = [

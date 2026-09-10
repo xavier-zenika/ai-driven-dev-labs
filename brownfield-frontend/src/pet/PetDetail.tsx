@@ -18,7 +18,7 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet, onBack }) => {
   }, [pet.id]);
 
   const loadVisits = async () => {
-    if (!pet.id) {
+    if (pet.id == null) {
       setLoading(false);
       return;
     }
